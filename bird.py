@@ -10,7 +10,7 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 
 Time_PER_ACTION = 0.5
 ACTIONS_PER_TIME = 1.0 / Time_PER_ACTION
-FRAMES_PER_ACTION = 8
+FRAMES_PER_ACTION = 14
 FRAME_PER_SECOND = FRAMES_PER_ACTION * ACTIONS_PER_TIME
 
 class Bird:
@@ -22,6 +22,7 @@ class Bird:
         self.x, self.y = x, y
         self.xv = throwin_speed
         self.frame = 0
+        self.frame_index = 0
         self.face_dir = 1
 
     def draw(self):
@@ -32,7 +33,9 @@ class Bird:
 
     def update(self):
         self.x += self.xv * game_framework.frame_time * PIXEL_PER_METER
-        self.frame = (self.frame + FRAMES_PER_ACTION * ACTIONS_PER_TIME * game_framework.frame_time) % 5
+        self.frame = (self.frame + FRAMES_PER_ACTION * ACTIONS_PER_TIME * game_framework.frame_time) % 14
+
+        self.frame_index = int(self.frame)
 
         if self.x >= 1600:
             self.face_dir = -1
