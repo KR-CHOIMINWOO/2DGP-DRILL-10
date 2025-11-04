@@ -26,13 +26,13 @@ class Bird:
 
     def draw(self):
         if self.face_dir == 1:
-            self.image.clip_composite_draw((int(self.frame) % 8) * 100, 0, 100, 100, 0, '', self.x, self.y, 100, 100)
+            self.image.clip_composite_draw(int(self.frame) * 180, 170, 185, 150, 0, '', self.x, self.y, 100, 100)
         else:
-            self.image.clip_composite_draw((int(self.frame) % 8) * 100, 0, 100, 100, 0, 'h', self.x, self.y, 100, 100)
+            self.image.clip_composite_draw(int(self.frame) * 180, 170, 185, 150, 0, 'h', self.x, self.y, 100, 100)
 
     def update(self):
         self.x += self.xv * game_framework.frame_time * PIXEL_PER_METER
-        self.frame = (self.frame + FRAMES_PER_ACTION * ACTIONS_PER_TIME * game_framework.frame_time) % 4
+        self.frame = (self.frame + FRAMES_PER_ACTION * ACTIONS_PER_TIME * game_framework.frame_time) % 5
 
         if self.x >= 1600:
             self.face_dir = -1
