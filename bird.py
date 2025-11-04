@@ -20,7 +20,6 @@ FRAME_PER_SECOND = FRAMES_PER_ACTION * ACTIONS_PER_TIME
 
 class Bird:
     image = None
-
     def __init__(self):
         if Bird.image == None:
             Bird.image = load_image('bird_animation.png')
