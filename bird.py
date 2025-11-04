@@ -24,8 +24,8 @@ class Bird:
     def __init__(self):
         if Bird.image == None:
             Bird.image = load_image('bird_animation.png')
-        self.x = random.randint(400,600)
-        self.y = 500
+        self.x = random.randint(200,800)
+        self.y = 550
         self.xv = RUN_SPEED_PPS
         self.frame = 0
         self.frame_index = 0
@@ -34,8 +34,8 @@ class Bird:
         self.face_dir = 1
 
     def draw(self):
-        width = 180
-        height = 160
+        width = 918 // 5
+        height = 506 // 3
         high = 3 * height
 
         if self.face_dir == 1:
