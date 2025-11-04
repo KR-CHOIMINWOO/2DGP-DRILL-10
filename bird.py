@@ -27,27 +27,27 @@ FRAME_PER_SECOND = FRAMES_PER_ACTION * ACTIONS_PER_TIME
 
 class Idle:
 
-    def __init__(self, boy):
-        self.boy = boy
+    def __init__(self, bird):
+        self.bird = bird
 
     def enter(self, e):
-        self.boy.wait_time = get_time()
-        self.boy.dir = 0
+        self.bird.wait_time = get_time()
+        self.bird.dir = 0
 
 
     def exit(self, e):
         pass
 
     def do(self):
-        self.boy.frame = (self.boy.frame + FRAMES_PER_ACTION * ACTIONS_PER_TIME * game_framework.frame_time) % 8
-        if get_time() - self.boy.wait_time > 3:
-            self.boy.state_machine.handle_state_event(('TIMEOUT', None))
+        self.bird.frame = (self.bird.frame + FRAMES_PER_ACTION * ACTIONS_PER_TIME * game_framework.frame_time) % 8
+        if get_time() - self.bird.wait_time > 3:
+            self.bird.state_machine.handle_state_event(('TIMEOUT', None))
 
     def draw(self):
-        if self.boy.face_dir == 1: # right
-            self.boy.image.clip_draw(int(self.boy.frame) * 100, 300, 100, 100, self.boy.x, self.boy.y)
+        if self.bird.face_dir == 1: # right
+            self.bird.image.clip_draw(int(self.bird.frame) * 100, 300, 100, 100, self.bird.x, self.bird.y)
         else: # face_dir == -1: # left
-            self.boy.image.clip_draw(int(self.boy.frame) * 100, 200, 100, 100, self.boy.x, self.boy.y)
+            self.bird.image.clip_draw(int(self.bird.frame) * 100, 200, 100, 100, self.bird.x, self.bird.y)
 
 
 
@@ -56,11 +56,11 @@ class Bird:
 
         self.item = None
 
-        self.x, self.y = 400, 90
+        self.x, self.y = 400, 550
         self.frame = 0
         self.face_dir = 1
         self.dir = 0
-        self.image = load_image('animation_sheet.png')
+        self.image = load_image('bird_animation.png')
 
         self.IDLE = Idle(self)
 
@@ -76,8 +76,4 @@ class Bird:
 
     def draw(self):
         pass
-
-    def fire_ball(self):
-        ball = Ball(self.x, self.y, self.face_dir * 10)
-        game_world.add_object(ball)
 
