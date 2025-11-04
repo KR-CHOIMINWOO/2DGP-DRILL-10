@@ -1,3 +1,5 @@
+import random
+
 from pico2d import *
 import game_world
 import game_framework
@@ -19,10 +21,11 @@ FRAME_PER_SECOND = FRAMES_PER_ACTION * ACTIONS_PER_TIME
 class Bird:
     image = None
 
-    def __init__(self, x = 400, y = 500):
+    def __init__(self):
         if Bird.image == None:
             Bird.image = load_image('bird_animation.png')
-        self.x, self.y = x, y
+        self.x = random.randint(400,600)
+        self.y = 500
         self.xv = RUN_SPEED_PPS
         self.frame = 0
         self.frame_index = 0
