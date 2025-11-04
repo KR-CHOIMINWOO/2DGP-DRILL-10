@@ -3,27 +3,21 @@ import game_world
 import game_framework
 
 PIXEL_PER_METER = (1.0 / 0.03)  # 1 pixel 3 cm
-GRAVITY = 9.8 # m/s^2 중력 가속도
 
-class Ball:
+class Bird:
     image = None
 
-    def __init__(self, x = 400, y = 300, throwin_speed = 15, throwin_angle = 45):
-        if Ball.image == None:
-            Ball.image = load_image('ball21x21.png')
+    def __init__(self, x = 400, y = 500, throwin_speed = 15):
+        if Bird.image == None:
+            Bird.image = load_image('bird_animation.png')
         self.x, self.y = x, y
-        self.xv = throwin_speed * math.cos(math.radians(throwin_angle))
-        self.yv = abs(throwin_speed * math.sin(math.radians(throwin_angle)))
+        self.xv = throwin_speed
 
     def draw(self):
         self.image.draw(self.x, self.y)
 
     def update(self):
-        #y 축 속도에 중력 가속도 적용
-        self.yv -= GRAVITY * game_framework.frame_time # m/s
-
         self.x += self.xv * game_framework.frame_time * PIXEL_PER_METER
-        self.y += self.yv * game_framework.frame_time * PIXEL_PER_METER
 
         if self.y < 60:
             game_world.remove_object(self)
