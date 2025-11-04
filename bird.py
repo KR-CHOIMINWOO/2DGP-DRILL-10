@@ -33,5 +33,9 @@ class Bird:
     def update(self):
         self.x += self.xv * game_framework.frame_time * PIXEL_PER_METER
 
-        if self.y < 60:
-            game_world.remove_object(self)
+        if self.x >= 1600:
+            self.face_dir = -1
+            self.xv = -self.xv
+        elif self.x <= 0:
+            self.face_dir = 1
+            self.xv = -self.xv
